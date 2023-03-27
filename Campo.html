@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Calculadora de Campo Eléctrico</title>
+	<style>
+		body {
+			background-image: url('fondo.jpg');
+			background-size: cover;
+            font-family: Arial, sans-serif;
+		}
+		.container {
+			background-color: white;
+			padding: 20px;
+			margin: 50px auto;
+			max-width: 600px;
+			box-shadow: 0 0 10px rgba(0,0,0,0.2);
+		}
+        h1 {
+			text-align: center; 
+			font-family: Arial, sans-serif; 
+			font-size: 36px; 
+			margin-bottom: 30px; 
+		}
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 20px;
+		}
+		label {
+			margin-bottom: 10px;
+			font-weight: bold;
+			font-size: 18px;
+		}
+		input[type="number"] {
+			padding: 10px;
+			font-size: 18px;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 0 0 5px rgba(0,0,0,0.2);
+			margin-bottom: 20px;
+		}
+		button {
+			padding: 10px;
+			font-size: 18px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 0 0 5px rgba(0,0,0,0.2);
+			cursor: pointer;
+		}
+		button:hover {
+			background-color: #3e8e41;
+		}
+		.resultado {
+			font-size: 24px;
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Campo eléctrico entre dos cargas</h1>
+		<form onsubmit="return calculateField()">
+			<label for="q1">Carga 1 (en Coulombs):</label>
+			<input type="number" id="q1" name="q1" required>
+			<br>
+			<label for="q2">Carga 2 (en Coulombs):</label>
+			<input type="number" id="q2" name="q2" required>
+			<br>
+			<label for="d">Distancia entre las cargas (en metros):</label>
+			<input type="number" id="d" name="d" required>
+			<br>
+			<button type="submit">Calcular campo eléctrico</button>
+		</form>
+		<p id="result"></p>
+	</div>
+	<script>
+		function calculateField() {
+			const k = 8.99 * Math.pow(10, 9);
+			const q1 = parseFloat(document.getElementById('q1').value);
+			const q2 = parseFloat(document.getElementById('q2').value);
+			const d = parseFloat(document.getElementById('d').value);
+			const e = k * ((q1 * q2) / Math.pow(d, 2));
+			document.getElementById("resultado").innerHTML = "El campo eléctrico total es " + e.toFixed(3) + " N/C";
+        }
+
+    </script>
+</body>
+</html>
